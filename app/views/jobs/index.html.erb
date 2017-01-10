@@ -30,8 +30,8 @@
       <%= job.contact_email %>
     </td>
     <td>
-      <%= link_to("Edit", edit_job_path(job), class:"btn btn-sm btn-default") %>
-      <%= link_to("Delete", job_path(job), class:"btn btn-sm btn-default", :method => :delete, :data => {:confirm => "Are you sure?"}) %>
+      <%= link_to("Edit", edit_job_path(job), class:"btn btn-xs btn-default") %>
+      <%= link_to("Delete", job_path(job), class:"btn btn-xs btn-default", :method => :delete, :data => {:confirm => "Are you sure?"}) %>
     </td>
     <td>
       <%= job.created_at %>
