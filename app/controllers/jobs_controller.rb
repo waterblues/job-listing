@@ -27,6 +27,7 @@ before_filter :authenticate_user!, only:[:new, :create, :edit, :update, :destroy
 
   def show
     @job = Job.find(params[:id])
+  
   end
 
   def edit
