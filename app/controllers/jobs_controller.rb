@@ -2,8 +2,15 @@ class JobsController < ApplicationController
 before_filter :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
 
   def index
-    @jobs = Job.where(:is_hidden => false).order("created_at DESC")
-  end
+    @jobs = case params[:order]
+         when 'by_lower_bound'
+           Job.where(is_hidden:false).order('wage_lower_bound DESC')
+         when 'by_upper_bound'
+           Job.where(is_hidden:false).order('wage_upper_bound DESC')
+         else
+            Job.where(is_hidden: false).order("created_at DESC")
+         end
+   end
 
   def new
     @job = Job.new
@@ -41,11 +48,19 @@ before_filter :authenticate_user!, only:[:new, :create, :edit, :update, :destroy
       redirect_to jobs_path, alert: "Job deleted"
   end
 
+
+  def lower
+    @jobs = Job.where(:is_hidden => false).order("created_at DESC")
+    @jobs.sort_by {|job| job.wage_lower_bound}
+  end
+
+
+
+
   private
 
   def job_params
     params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
   end
-
 
 end

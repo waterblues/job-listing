@@ -1,15 +1,27 @@
-<div class="col-md-12">
-  <div class="job">
-    <%= link_to("Add a job", new_job_path, class: "btn btn-primary pull-right") %>
-  </div>
+<div class="dropdown clearfix pull-right">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">排序
+        <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+      <li>
+        <%= link_to("按照薪水下限排序", jobs_path(:order => "by_lower_bound")) %>
+      </li>
+      <li>
+        <%= link_to("按照薪水上限排序", jobs_path(:order => "by_upper_bound")) %>
+      </li>
+      <li>
+        <%= link_to("按照发布时间排序", jobs_path) %>
+      </li>
+   </ul>
+</div>
   <table class="table table-hover">
     <thead>
       <tr>
-        <td>Title</td>
-        <td>wage_upper_bound</td>
-        <td>wage_lower_bound</td>
-        <td>contact_email</td>
-        <td>date</td>
+        <td>职位</td>
+        <td>薪水上限</td>
+        <td>薪水下限</td>
+        <td>邮箱</td>
+        <td>发布日期</td>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +38,11 @@
          </td>
        </tr>
       <% end %>
+
+
+
     </tbody>
+
   </table>
+
 </div>
