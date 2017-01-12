@@ -8,27 +8,40 @@
 <br>
 
 <table class="table table-boldered">
-  <% @jobs.each do |job| %>
-  <tr>
-    <td>
-      <%= render_job_status(job) %>
-      <%= link_to(job.title, admin_job_path(job)) %>
-    </td>
-    <td>
-      <%= link_to("Edit", edit_admin_job_path(job), :class => "btn btn-xs btn-default") %>
-      <%= link_to("Delete", admin_job_path(job), :class => "btn btn-xs btn-default", :method => :delete, :data => { :confirm => "Are you sure?"}) %>
 
-      <% if job.is_hidden %>
+  <thead>
+    <tr>
+      <td>职位</td>
+      <td>应征人数</td>
+      <td>发布日期</td>
+      <td>职位管理</td>
+    </tr>
+  </thead>
 
-        <%= link_to("Publish", publish_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-default") %>
-      <% else %>
-        <%= link_to("Hide", hide_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-default") %>
-      <% end %>
+  <tbody>
+    <% @jobs.each do |job| %>
+    <tr>
+      <td>
+        <%= render_job_status(job) %>
+        <%= link_to(job.title, admin_job_path(job)) %>
+      </td>
+      <td><%= link_to(job.resumes.count, admin_job_resumes_path(job) )%></td>
+      <td><%= job.created_at %></td>
 
-    </td>
-    <td>
-      <%= job.created_at %>
-    </td>
-  </tr>
-  <% end %>
+      <td>
+        <%= link_to("Edit", edit_admin_job_path(job), :class => "btn btn-xs btn-default") %>
+        <%= link_to("Delete", admin_job_path(job), :class => "btn btn-xs btn-default", :method => :delete, :data => { :confirm => "Are you sure?"}) %>
+
+        <% if job.is_hidden %>
+
+          <%= link_to("Publish", publish_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-default") %>
+        <% else %>
+          <%= link_to("Hide", hide_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-default") %>
+        <% end %>
+      </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+
 </table>
