@@ -1,4 +1,5 @@
 class Job < ApplicationRecord
+  has_many :resumes 
 
   validates :title, presence: true
   validates :description, presence: true
@@ -17,5 +18,5 @@ class Job < ApplicationRecord
     self.save
   end
 
-  
+
 end
