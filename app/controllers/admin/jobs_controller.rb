@@ -1,6 +1,7 @@
 class Admin::JobsController < ApplicationController
-before_filter :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
+before_filter :authenticate_user!, only:[:new, :create, :edit, :update, :destroy, :publish, :hide]
 before_filter :require_is_admin
+layout "admin"
 
 def show
   @job = Job.find(params[:id])
@@ -41,6 +42,21 @@ def destroy
    @job = Job.find(params[:id])
    @job.destroy
      redirect_to admin_jobs_path, alert:"删除成功"
+end
+
+def publish
+  @job = Job.find(params[:id])
+  @job.publish!
+  @job.save
+  redirect_to :back
+
+end
+
+def hide
+  @job = Job.find(params[:id])
+  @job.hide!
+  @job.save
+  redirect_to :back
 end
 
 
