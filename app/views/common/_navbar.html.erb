@@ -1,8 +1,26 @@
+<style>
+#icon {
+  font-size: 24px;
+  color: black;
+  margin-right: 300px;
+}
+
+.item {
+  margin-right: 50px;
+}
+
+</style>
+
+
 <nav class="navbar navbar-default " role="navigation">
   <div class="container-fluid">
 
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">职位列表</a>
+      <a class="navbar-brand" href="/" id="icon">锤子科技</a>
+
+      <a class="navbar-brand item" href="/">公司介绍</a>
+      <a class="navbar-brand item" href="/">常见问题</a>
+      <a class="navbar-brand item" href="/">在线客服</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -17,7 +35,11 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to("登出", destroy_user_session_path, method: :delete) %></li>
+              <% if current_user.admin? %>
+              <li><%= link_to("后台管理区", admin_jobs_path) %></li>
+              <% end %>
+
+              <li><%= link_to("退出", destroy_user_session_path, method: :delete) %></li>
 
             </ul>
           </li>

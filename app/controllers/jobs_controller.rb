@@ -1,13 +1,11 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
 
-  def show
-    @job = Job.find(params[:id])
-  end
-
   def index
     @jobs = Job.all
   end
+
+
 
   def new
     @job = Job.new
@@ -22,6 +20,10 @@ class JobsController < ApplicationController
     end
    end
 
+   def show
+     @job = Job.find(params[:id])
+   end
+
    def edit
      @job = Job.find(params[:id])
    end
@@ -29,8 +31,8 @@ class JobsController < ApplicationController
    def update
      @job = Job.find(params[:id])
      if @job.update(job_params)
-       notice:"更新成功"
-       redirect_to jobs_path
+
+       redirect_to jobs_path, notice: '编辑成功'
      else
        render :edit
      end

@@ -1,5 +1,13 @@
-<h1><%= @job.title %></h1>
+<br />
+<%= link_to("←回工作列表", jobs_path )  %>
 
+<br />
+<br />
+<h3><%= @job.title %></h3>
+<br />
+
+<%= @job.created_at %>
 <p>
   <%= simple_format(@job.description) %>
+
 </p>
