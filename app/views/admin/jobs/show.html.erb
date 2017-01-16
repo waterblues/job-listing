@@ -1,5 +1,24 @@
-<h1><%=@job.title %></h1>
+<br />
 
-<p>
+<%= link_to("←回工作列表", jobs_path, :class => "underline" )  %>
+
+<br />
+<br />
+
+<div>
+  <h3><%= @job.title  %></h3>
+  <br />
+  <p>发布日期：<%= local_time(@job.created_at, '%B %e, %Y %l:%M%p' ) %> </p>
+  薪资范围：<%= @job.wage_lower_bound  %> ~ <%= @job.wage_upper_bound %>元
+</div>
+<hr />
+<br />
+<div>
+  <h5>职位详情</h5>
   <%= simple_format(@job.description) %>
-</p>
+  <br />
+  <h5>技能要求</h5>
+  <%= @job.require_skill %>
+</div>
+
+<hr />

@@ -1,0 +1,68 @@
+<br />
+<div class="container">
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="imaginary_container">
+      <div class="row">
+        <div id="custom-search-input">
+          <div class="input-group col-md-12">
+            <%= form_tag search_jobs_path, :method => :get, :class => "jobs-search-form" do %>
+             <div class="input-group">
+               <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="职位搜索">
+               <span class="input-group-btn">
+                 <button type="submit" class="btn btn-info">
+                   <span class="glyphicon glyphicon-search"></span>
+                 </button>
+               </span>
+             </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<br />
+<% if !@jobs %>
+  <h1 style="text-align:center">没有找到你搜索的职位</h1>
+<% else %>
+<table class="table table-boldered">
+  <thead>
+    <tr>
+      <td>
+        职位
+      </td>
+      <td>
+        薪水上限
+      </td>
+      <td>
+        薪水下限
+      </td>
+      <td>
+        发布时间
+      </td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+    <tr>
+      <td>
+        <%= link_to(job.title, job_path(job)) %>
+      </td>
+      <td>
+        <%= job.wage_upper_bound %>
+      </td>
+      <td>
+        <%= job.wage_lower_bound %>
+      </td>
+      <td>
+        <%= job.created_at %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

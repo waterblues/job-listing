@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>锤子招聘</title>
+    <title>灵犀招聘</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,7 +12,10 @@
   <body>
 
     <div class="container-fluid">
+      <div class="row">
         <%= render "common/navbar" %>
+      </div>
+
         <%= render "common/flashes" %>
         <%= yield %>
     </div>

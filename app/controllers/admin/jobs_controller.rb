@@ -1,6 +1,6 @@
 class Admin::JobsController < ApplicationController
 before_filter :authenticate_user!, only:[:new, :create, :edit, :update, :destroy, :publish, :hide]
-before_filter :require_is_admin
+
 layout "admin"
 
 def show
@@ -8,7 +8,8 @@ def show
 end
 
 def index
-  @jobs = Job.all
+  @jobs = Job.all.paginate(:page => params[:page], :per_page => 15)
+
 end
 
 def new
@@ -64,7 +65,7 @@ end
 private
 
 def job_params
-  params.require(:job).permit(:title,:description,:is_admin, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
+  params.require(:job).permit(:title,:description,:is_admin, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden, :require_skill, :company)
 end
 
 

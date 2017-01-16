@@ -1,16 +1,29 @@
 <br />
-<%= link_to("←回工作列表", jobs_path )  %>
+
+<%= link_to("←回工作列表", jobs_path, :class => "underline" )  %>
 
 <br />
 <br />
-<h3><%= @job.title %></h3>
-<br />
 
-<%= @job.created_at %>
-<p>
+<div>
+  <h3><%= @job.title %></h3>
+  <br />
+  <p>发布日期：<%= local_time(@job.created_at, '%B %e, %Y %l:%M%p') %> <%= @job.wage_lower_bound  %>元 ~ <%= @job.wage_upper_bound %>元</p>
+    薪资范围：<%= @job.wage_lower_bound  %> ~ <%= @job.wage_upper_bound %>元
+</div>
+<hr />
+<br />
+<div>
+  <h5>职位详情</h5>
   <%= simple_format(@job.description) %>
-</p>
+  <br />
+  <h5>技能要求</h5>
+  <%= @job.require_skill %>
+</div>
+
+<br />
+<hr />
 
 <div class="text-center">
-  <%= link_to("提交简历", new_job_resume_path(@job), :style => "font-size: 30px; text-decoration:underline;") %>
+  <%= link_to("提交简历", new_job_resume_path(@job), :class => "btn btn-lg btn-info") %>
 </div>

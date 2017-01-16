@@ -55,3 +55,9 @@ gem 'devise'
 gem 'font-awesome-rails'
 
 gem 'carrierwave'
+
+gem 'will_paginate-bootstrap'
+
+gem 'local_time'
+
+gem 'ransack'

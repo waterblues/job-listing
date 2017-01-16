@@ -1,31 +1,35 @@
 <div class="pull-right">
-  <%= link_to("发布工作职位", new_admin_job_path, :class => "btn btn-default") %>
+  <%= link_to("发布工作职位", new_admin_job_path, :class => "btn btn-info") %>
 </div>
 
+<br />
 <br />
 <br />
 
 <table class="table table-boldered">
 
   <thead>
-   <td>
-     职位
-   </td>
-   <td>
-     简历数量
-   </td>
-   <td>
-     薪水上限
-   </td>
-   <td>
-     薪水下限
-   </td>
-   <td>
-     发布日期
-   </td>
-   <td>
-     管理
-   </td>
+    <tr class="info">
+      <th>
+        职位
+      </th>
+      <th>
+        简历数量
+      </th>
+      <th>
+        薪水上限
+      </th>
+      <th>
+        薪水下限
+      </th>
+      <th>
+        发布日期
+      </th>
+      <th>
+        管理
+      </th>
+    </tr>
+
 
   </thead>
 
@@ -47,15 +51,15 @@
       <%= job.wage_lower_bound %>
     </td>
     <td>
-      <%= job.created_at %>
+      <%= local_time(job.created_at, '%B %e, %Y %l:%M%p') %>
     </td>
     <td>
-      <%= link_to("编辑", edit_admin_job_path(job)) %> |
-      <%= link_to("删除", admin_job_path(job), :method => :delete, :data => {:confirm => "Are you sure?"}) %> |
+      <%= link_to edit_admin_job_path(job), :class => "btn btn-xs btn-info" do %><i class="fa fa-pencil"></i><% end %>
+      <%= link_to admin_job_path(job), :method => :delete,:class =>"btn btn-xs btn-danger", :data => {:confirm => "Are you sure?"} do %> <i class="fa fa-trash-o"></i><% end %>
       <% if job.is_hidden %>
-      <%= link_to("Publish", publish_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-default") %>
+      <%= link_to publish_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-success" do %><i class="fa fa-eye"></i><% end %>
       <% else %>
-      <%= link_to("Hide", hide_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-default") %>
+      <%= link_to hide_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-warning" do %><i class="fa fa-eye-slash"></i><% end %>
       <% end %>
     </td>
 
@@ -63,3 +67,9 @@
   <% end %>
   </tbody>
 </table>
+
+<br />
+<br />
+<div class="text-center">
+  <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+</div>
