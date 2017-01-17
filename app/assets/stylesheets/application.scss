@@ -25,10 +25,20 @@
 
 .navbar-default {
   margin-bottom: 0;
+
 }
 
 @media (min-width: 768px) {
   .navbar {
     border-radius: 0;
   }
+}
+
+
+.navbar-brand > img {
+  display: inline-block;
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+  margin-top: -5px;
 }
