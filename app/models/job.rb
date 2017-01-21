@@ -5,6 +5,11 @@ class Job < ApplicationRecord
   validates :wage_upper_bound, presence: true
   validates :wage_lower_bound, presence: true
   validates :wage_lower_bound, numericality: {greater_than: 0}
+  validates :address, presence: true
+  validates :description, presence: true
+  validates :require_skill, presence: true
+  validates :company, presence: true
+  validates :contact_email, presence: true
 
  scope :published, -> {where(is_hidden: false)}
  scope :recent, -> {order('created_at DESC')}
