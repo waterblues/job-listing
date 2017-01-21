@@ -1,0 +1,29 @@
+
+<div class="container-fluid">
+  <div class="col-md-4 col-md-offset-4">
+
+
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+    <br />
+    <br />
+    <br />
+    <div class="form-inputs">
+      <%= f.input :email, required: true, autofocus: true, label:"电子邮箱", placeholder:"请输入电子邮箱", type: "email", value: "", name:"user[email]", input_html: {class:"string email required form-control"} %>
+      <br />
+      <%= f.input :password, required: true, label:"密码", placeholder: "至少六位", type:"password", name:"user[password]", id:"user_password", input_html: {class: "form-group password required user_password"} %>
+      <br />
+      <%= f.input :password_confirmation, required: true, label:"密码确认", placeholder:"再次确认密码", type:"password", name:"user[password_confirmation]", input_html:{class:"form-group password required user_password_confirmation"} %>
+    </div>
+    <br />
+    <div class="form-actions">
+      <%= f.button :submit, :label => "注册", type:"submit", name:"commit", value:"注册", input_html:{class:"btn btn-default btn-devise btn-block"} %>
+    </div>
+  <% end %>
+  <br />
+  <br />
+  已经有账号？<a href="/users/sign_in">登录</a>
+
+
+  </div>
+</div>
