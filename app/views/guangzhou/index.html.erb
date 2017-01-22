@@ -1,0 +1,97 @@
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="imaginary_container">
+        <div class="row">
+          <div id="custom-search-input">
+            <div class="input-group col-md-12">
+              <%= form_tag search_jobs_path , :method => :get, :class => "jobs-search-form" do %>
+              <div class="input-group">
+                <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="职位搜索">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-info">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </span>
+
+
+
+
+
+
+
+              </div>
+             <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown clearfix pull-right">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  排序
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+    <li>
+      <%= link_to("按照薪水下限排序", beijing_index_path(:order => "by_lower_bound")) %>
+    </li>
+    <li>
+      <%= link_to("按照薪水上限排序", beijing_index_path(:order => "by_upper_bound")) %>
+    </li>
+    <li>
+      <%= link_to("按照发布时间排序", guangzhou_index_path) %>
+    </li>
+  </ul>
+</div>
+
+
+
+<br />
+<br />
+<table class="table table_boldered table-hover table-responsive">
+  <thead>
+    <tr class="info">
+      <th>职位名称</th>
+      <th>薪水上限</th>
+      <th>薪水下限</th>
+      <th>发布时间</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+
+    <tr>
+      <td>
+        <%= link_to(job.title, job_path(job)) %>
+      </td>
+      <td>
+        <%= job.wage_upper_bound %>
+      </td>
+      <td>
+        <%= job.wage_lower_bound %>
+      </td>
+      <td>
+        <%= local_time(job.created_at, '%m/%e/%Y') %>
+      </td>
+    </tr>
+    <% end %>
+   </tbody>
+
+
+</table>
+
+<br />
+<br />
+<br />
+
+
+<div class="text-center">
+  <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+</div>

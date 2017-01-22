@@ -1,0 +1,2 @@
+module ShanghaiHelper
+end
