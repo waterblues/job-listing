@@ -13,6 +13,14 @@ Rails.application.routes.draw do
       get :guangzhou
       get :shenzhen
       get :hangzhou
+
+      get :jishu
+      get :chanpin
+      get :sheji
+      get :yunying
+      get :shichang
+      get :guanli
+
     end
     resources :resumes
   end
@@ -30,6 +38,13 @@ Rails.application.routes.draw do
         get :guangzhou
         get :shenzhen
         get :hangzhou
+
+        get :jishu
+        get :chanpin
+        get :sheji
+        get :yunying
+        get :shichang
+        get :guanli
       end
       resources :resumes
     end
@@ -89,17 +104,36 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace :jishu do
+      resources :jobs do
+        member do
+          post :publish
+          post :hide
+        end
+
+        resources :resumes
+      end
+    end
+
+
+
   end
 
 
+  resources :beijing
+  resources :shanghai
+  resources :guangzhou
+  resources :shenzhen
+  resources :hangzhou
 
 
+  resources :jishu
+  resources :chanpin
+  resources :yunying
+  resources :sheji
+  resources :guanli
+  resources :shichang
 
-resources :beijing
-resources :shanghai
-resources :guangzhou
-resources :shenzhen
-resources :hangzhou
 
 
   root "welcome#index"

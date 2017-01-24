@@ -1,53 +1,44 @@
-<br />
-<div class="container">
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-    <div class="imaginary_container">
-      <div class="row">
-        <div id="custom-search-input">
-          <div class="input-group col-md-12">
-            <%= form_tag search_jobs_path, :method => :get, :class => "jobs-search-form" do %>
-             <div class="input-group">
-               <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="职位搜索">
-               <span class="input-group-btn">
-                 <button type="submit" class="btn btn-info">
-                   <span class="glyphicon glyphicon-search"></span>
-                 </button>
-               </span>
-             </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 
 <br />
-<% if !@jobs %>
-  <h1 style="text-align:center">没有找到你搜索的职位</h1>
-<% else %>
-<table class="table table-boldered">
+<%= render :partial => "jobs/search_bar" %>
+
+<div class="dropdown clearfix pull-right">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  排序
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+    <li>
+      <%= link_to("按照薪水下限排序", jobs_path(:order => "by_lower_bound")) %>
+    </li>
+    <li>
+      <%= link_to("按照薪水上限排序", jobs_path(:order => "by_upper_bound")) %>
+    </li>
+    <li>
+      <%= link_to("按照发布时间排序", jobs_path) %>
+    </li>
+  </ul>
+</div>
+
+
+
+
+<br />
+<br />
+<table class="table table_boldered table-hover table-responsive">
   <thead>
-    <tr>
-      <td>
-        职位
-      </td>
-      <td>
-        薪水上限
-      </td>
-      <td>
-        薪水下限
-      </td>
-      <td>
-        发布时间
-      </td>
+    <tr class="info">
+      <th>职位名称</th>
+      <th>薪水上限</th>
+      <th>薪水下限</th>
+      <th>发布时间</th>
+
     </tr>
   </thead>
 
   <tbody>
     <% @jobs.each do |job| %>
+
     <tr>
       <td>
         <%= link_to(job.title, job_path(job)) %>
@@ -59,10 +50,34 @@
         <%= job.wage_lower_bound %>
       </td>
       <td>
-        <%= job.created_at %>
+        <%= local_time(job.created_at, '%m/%e/%Y') %>
       </td>
     </tr>
     <% end %>
-  </tbody>
+   </tbody>
+
+
 </table>
-<% end %>
+
+<br />
+<br />
+<br />
+<div class="text-center">
+  <%= link_to("技术", jishu_index_path,class:"btn btn-default ") %>
+  <%= link_to("产品", chanpin_index_path,class:"btn btn-primary") %>
+  <%= link_to("设计", sheji_index_path,class:"btn btn-info") %>
+  <%= link_to("运营", yunying_index_path,class:"btn btn-success") %>
+  <%= link_to("市场", shichang_index_path,class:"btn btn-warning") %>
+  <%= link_to("管理", guanli_index_path,class:"btn btn-danger") %>
+
+</div>
+
+
+
+
+<br />
+<hr />
+<br />
+<div class="text-center">
+  <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+</div>

@@ -1,0 +1,2 @@
+module ShejiHelper
+end

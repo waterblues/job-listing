@@ -1,0 +1,2 @@
+module ShichangHelper
+end

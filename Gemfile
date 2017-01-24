@@ -63,6 +63,9 @@ gem 'local_time'
 
 gem 'ransack'
 
+gem 'seo_helper'
+
+gem "will_paginate"
 
 group :production do
   gem 'pg'

@@ -1,4 +1,6 @@
 class Job < ApplicationRecord
+ self.inheritance_column = :_type_disabled
+
   has_many :resumes
 
   validates :title, presence: true
@@ -10,6 +12,7 @@ class Job < ApplicationRecord
   validates :require_skill, presence: true
   validates :company, presence: true
   validates :contact_email, presence: true
+  validates :many_kind, presence:true
 
  scope :published, -> {where(is_hidden: false)}
  scope :recent, -> {order('created_at DESC')}

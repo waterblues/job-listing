@@ -3,6 +3,7 @@
 <%= simple_form_for @job do |f| %>
 
 <%= f.input :title, :label => "职位名称" %>
+<%= f.input :many_kind, :label => "职位类型" %>
 <%= f.input :address, :label => "工作地点" %>
 <%= f.input :description, :label => "职位详情" %>
 <%= f.input :require_skill, :label => "技能要求" %>
