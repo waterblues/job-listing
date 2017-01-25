@@ -1,6 +1,6 @@
 class Admin::JobsController < ApplicationController
 before_filter :authenticate_user!, only:[:new, :create, :edit, :update, :destroy, :publish, :hide]
-
+before_filter :require_is_admin
 layout "admin"
 
 def show
@@ -60,7 +60,12 @@ def hide
   redirect_to :back
 end
 
-
+def require_is_admin
+    if !current_user.admin?
+      flash[:alert] = 'You are not admin'
+      redirect_to root_path
+    end
+end
 
 private
 
