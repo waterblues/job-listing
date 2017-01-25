@@ -16,4 +16,11 @@
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require local_time
+//= require bootstrap/modal
 //= require_tree .
+//= require bootstrap/carousel
+
+$(document).ready(function() {
+  $('#myCarousel').carousel({interval: 3000});
+
+});

@@ -1,22 +1,13 @@
 <br />
-<%= render :partial => "jobs/search_bar" %>
+<div class="col-md-8 col-md-offset-2" style="margin-bottom:30px;">
+  <%= render :partial => "jobs/search_bar" %>
+</div>
 
-<div class="dropdown clearfix pull-right">
-  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-  排序
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-    <li>
-      <%= link_to("按照薪水下限排序", jobs_path(:order => "by_lower_bound")) %>
-    </li>
-    <li>
-      <%= link_to("按照薪水上限排序", jobs_path(:order => "by_upper_bound")) %>
-    </li>
-    <li>
-      <%= link_to("按照发布时间排序", jobs_path) %>
-    </li>
-  </ul>
+
+<div class="btn-group" role="group" aria-label="排序" style="margin:30px 0 -20px 125px;">
+      <%= link_to("按照薪水下限排序", jobs_path(:order => "by_lower_bound"), :class=>"btn btn-default") %>
+      <%= link_to("按照薪水上限排序", jobs_path(:order => "by_upper_bound"), :class=>"btn btn-default") %>
+      <%= link_to("按照发布时间排序", jobs_path, :class=>"btn btn-default") %>
 </div>
 
 
@@ -24,43 +15,63 @@
 
 <br />
 <br />
-<table class="table table_boldered table-hover table-responsive">
-  <thead>
-    <tr class="info">
-      <th>职位名称</th>
-      <th>薪水上限</th>
-      <th>薪水下限</th>
-      <th>发布时间</th>
 
-    </tr>
-  </thead>
+<div class="col-md-12" >
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table table_boldered table-hover table-responsive">
+      <thead>
+        <tr class="info">
+          <th>
+            工作职位
+          </th>
+          <th>
+            薪水上限
+          </th>
+          <th>
+            薪水下限
+          </th>
+          <th>
+            发布日期
+          </th>
 
-  <tbody>
-    <% @jobs.each do |job| %>
+        </tr>
+      </thead>
 
-    <tr>
-      <td>
-        <%= link_to(job.title, job_path(job)) %>
-      </td>
-      <td>
-        <%= job.wage_upper_bound %>
-      </td>
-      <td>
-        <%= job.wage_lower_bound %>
-      </td>
-      <td>
-        <%= local_time(job.created_at, '%m/%e/%Y') %>
-      </td>
-    </tr>
-    <% end %>
-   </tbody>
+      <tbody>
+        <% @jobs.each do |job| %>
+
+        <tr>
+          <td>
+            <%= link_to(job.title, job_path(job)) %>
+          </td>
+
+          <td>
+            <%= job.wage_upper_bound %>
+          </td>
+          <td>
+            <%= job.wage_lower_bound %>
+          </td>
+          <td>
+            <%= local_time(job.created_at, '%m/%e/%Y')  %>
+          </td>
+
+        </tr>
+        <% end %>
+       </tbody>
 
 
-</table>
+    </table>
+    <br />
+    <br />
+    <br />
+  </div>
+</div>
 
-<br />
-<br />
-<br />
+
+
+
+
+
 <div class="text-center">
   <%= link_to("技术", jishu_index_path,class:"btn btn-default ") %>
   <%= link_to("产品", chanpin_index_path,class:"btn btn-primary") %>

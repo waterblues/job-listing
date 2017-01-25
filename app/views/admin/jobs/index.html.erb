@@ -51,7 +51,7 @@
       <%= job.wage_lower_bound %>
     </td>
     <td>
-      <%= local_time(job.created_at, '%b %e, %Y') %>
+      <%= local_time(job.created_at, '%m/%e/%Y') %>
     </td>
     <td>
       <%= link_to edit_admin_job_path(job), :class => "btn btn-xs btn-info" do %><i class="fa fa-pencil"></i><% end %>

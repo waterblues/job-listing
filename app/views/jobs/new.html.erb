@@ -1,17 +1,27 @@
-<h1>发布工作职位</h1>
 <br />
+<h1 style="text-align:center">发布工作职位</h1>
+<br />
+
+
 <%= simple_form_for @job do |f| %>
-
-<%= f.input :title, :label => "职位名称" %>
-<%= f.input :many_kind, :label => "职位类型" %>
-<%= f.input :address, :label => "工作地点" %>
-<%= f.input :description, :label => "职位详情" %>
-<%= f.input :require_skill, :label => "技能要求" %>
-<%= f.input :wage_upper_bound, :label => "薪水上限" %>
-<%= f.input :wage_lower_bound, :label => "薪水下限" %>
-<%= f.input :company, :label => "公司介绍" %>
-<%= f.input :contact_email, :label => "联系邮箱" %>
-<%= f.input :is_hidden %>
-
-<%= f.submit "Submit" %>
+    <div class="form-inputs">
+      <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-3">
+          <%= f.input :title, :label => "职位名称" %>
+          <%= f.input :many_kind, :label => "职位类型" %>
+          <%= f.input :address, :label => "工作地点" %>
+          <%= f.input :description, :label => "职位详情" %>
+          <%= f.input :require_skill, :label => "技能要求" %>
+          <%= f.input :wage_upper_bound, :label => "薪水上限" %>
+          <%= f.input :wage_lower_bound, :label => "薪水下限" %>
+          <%= f.input :company, :label => "公司介绍" %>
+          <%= f.input :contact_email, :label => "联系邮箱" %>
+          <%= f.input :is_hidden %>
+          <%= f.submit "Submit" %>
+        </div>
+      </div>
+      <br />
+      <br />
+      <hr />
+    </div>
 <% end %>
