@@ -21,9 +21,19 @@ Rails.application.routes.draw do
       get :shichang
       get :guanli
 
+
     end
     resources :resumes
   end
+
+  resources :beijing
+  resources :shanghai
+  resources :guangzhou
+  resources :shenzhen
+  resources :hangzhou
+
+
+
 
 
   namespace :admin do
@@ -120,11 +130,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :beijing
-  resources :shanghai
-  resources :guangzhou
-  resources :shenzhen
-  resources :hangzhou
+
 
 
   resources :jishu
