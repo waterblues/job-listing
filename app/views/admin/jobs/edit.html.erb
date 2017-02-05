@@ -10,6 +10,9 @@
           <%= f.input :title, :label => "职位名称" %>
           <%= f.input :many_kind, :label => "职位类型" %>
           <%= f.input :address, :label => "工作地点" %>
+          <%= f.input :experience, :collection => ["不限经验","1-3年","3-5年","5-10年"], :selected => "1-3年",
+          :label => "工作经验" %>
+          <%= f.input :education, :collection => ["大专","本科","硕士","博士"], :selected => "本科", :label => "学历要求" %>
           <%= f.input :description, :label => "职位详情" %>
           <%= f.input :require_skill, :label => "技能要求" %>
           <%= f.input :wage_upper_bound, :label => "薪水上限" %>

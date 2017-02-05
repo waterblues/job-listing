@@ -8,17 +8,32 @@
 }
 
 
-.job-item-title {
-  background: rgb(255,246,143);
-  text-align: center;
-  padding: 10px;
-  margin: 0;
+.job-title {
   font-size: 20px;
+  color: black;
+
+
 }
 
-.job-item-description {
-  background: rgb(187,255,255);
-  padding: 5px 10px 5px 10px;
-  margin:0;
+
+.red {
+  color:#fc703e;
+  font-size: 17px;
+  margin: 10px 0 10px 0;
+}
+
+.job-address {
+  padding: 0 5px 10px 5px;
+}
+
+.job-experience {
+  padding: 0 5px 10px 5px;
+}
+
+.job-education {
+  margin: 0 5px 10px 5px;
+}
+
+.job-company {
   font-size: 20px;
 }
