@@ -3,26 +3,19 @@
   <head>
     <title>灵犀招聘</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-
   <body>
-
     <div class="container-fluid">
       <div class="row">
         <%= render "common/navbar" %>
       </div>
-
-        <%= render "common/flashes" %>
-        <main>
-          <%= yield %>
-        </main>
+      <%= render "common/flashes" %>
+      <main>
+        <%= yield %>
+      </main>
     </div>
-
     <%= render "common/footer" %>
-
   </body>
 </html>

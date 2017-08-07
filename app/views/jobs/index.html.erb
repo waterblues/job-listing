@@ -2,21 +2,15 @@
 <div class="col-md-8 col-md-offset-2" style="margin-bottom:30px;">
   <%= render :partial => "jobs/search_bar" %>
 </div>
-
-
 <div class="btn-group pull-right" role="group" aria-label="排序" >
       <%= link_to("按照薪水下限排序", jobs_path(:order => "by_lower_bound"), :class=>"btn btn-default") %>
       <%= link_to("按照薪水上限排序", jobs_path(:order => "by_upper_bound"), :class=>"btn btn-default") %>
       <%= link_to("按照发布时间排序", jobs_path, :class=>"btn btn-default") %>
 </div>
-
-
 <br />
 <br />
-
 <div class="col-md-12" >
   <div class="col-md-10 col-md-offset-1">
-
     <ul class="nav nav-tabs">
       <li>
         <%= link_to(jishu_index_path) do %>技术 <% end %>
@@ -36,25 +30,17 @@
       <li>
         <%= link_to(guanli_index_path) do %>管理<% end %>
       </li>
-
     </ul>
-
-
-
-
         <table class="table table_boldered table-hover table-responsive">
           <thead>
             <tr class="info">
               <th>职位简介</th>
               <th>公司简介</th>
               <th>发布时间</th>
-
             </tr>
           </thead>
-
           <tbody>
             <% @jobs.each do |job| %>
-
             <tr>
               <td>
               <%= link_to(job.title, job_path(job), :class =>"job-title") %>
@@ -73,31 +59,21 @@
                   <%= job.education %>
                 </span>
               </td>
-
               <td>
                 <%= content_tag(:span, job.company, class:"job-company") %>
               </td>
-
               <td>
                 <%= local_time(job.created_at, '%m/%e/%Y') %>
-
               </td>
-
             </tr>
-
             <% end %>
            </tbody>
         </table>
-
     <br />
     <br />
     <br />
   </div>
 </div>
-
-
-
-
 <br />
 <hr />
 <br />

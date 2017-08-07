@@ -14,13 +14,6 @@
                     <span class="glyphicon glyphicon-search"></span>
                   </button>
                 </span>
-
-
-
-
-
-
-
               </div>
              <% end %>
             </div>
@@ -48,9 +41,6 @@
     </li>
   </ul>
 </div>
-
-
-
 <br />
 <br />
 <table class="table table_boldered table-hover table-responsive">
@@ -60,13 +50,11 @@
       <th>薪水上限</th>
       <th>薪水下限</th>
       <th>发布时间</th>
-
     </tr>
   </thead>
 
   <tbody>
     <% @jobs.each do |job| %>
-
     <tr>
       <td>
         <%= link_to(job.title, job_path(job)) %>
@@ -83,14 +71,10 @@
     </tr>
     <% end %>
    </tbody>
-
-
 </table>
-
 <br />
 <br />
 <br />
-
 
 <div class="text-center">
   <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>

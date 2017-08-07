@@ -11,7 +11,6 @@ class ResumesController < ApplicationController
     @resume = Resume.new(resume_params)
     @resume.job = @job
     @resume.user = current_user
-
     if @resume.save
       flash[:notice] = "简历提交成功"
       redirect_to job_path(@job)
@@ -25,6 +24,4 @@ class ResumesController < ApplicationController
   def resume_params
     params.require(:resume).permit(:content, :attachment)
   end
-
-
 end

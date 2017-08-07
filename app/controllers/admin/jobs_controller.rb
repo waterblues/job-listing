@@ -1,77 +1,72 @@
 class Admin::JobsController < ApplicationController
-before_filter :authenticate_user!, only:[:new, :create, :edit, :update, :destroy, :publish, :hide]
-before_filter :require_is_admin
-layout "admin"
+  before_filter :authenticate_user!, only:[:new, :create, :edit, :update, :destroy, :publish, :hide]
+  before_filter :require_is_admin
+  layout "admin"
 
-def show
-  @job = Job.find(params[:id])
-end
-
-def index
-  @jobs = Job.all.paginate(:page => params[:page], :per_page => 10)
-
-end
-
-def new
-  @job = Job.new
-end
-
-def create
-  @job = Job.new(job_params)
-
-  if @job.save
-    redirect_to admin_jobs_path, notice:"工作发布成功"
-  else
-    render :new
+  def show
+    @job = Job.find(params[:id])
   end
-end
 
-def edit
-  @job = Job.find(params[:id])
-end
-
-def update
-  @job = Job.find(params[:id])
-  if @job.update(job_params)
-     redirect_to admin_jobs_path, notice:"修改成功"
-  else
-    render :edit
+  def index
+    @jobs = Job.all.paginate(:page => params[:page], :per_page => 10)
   end
-end
 
-def destroy
-   @job = Job.find(params[:id])
-   @job.destroy
-     redirect_to admin_jobs_path, alert:"删除成功"
-end
+  def new
+    @job = Job.new
+  end
 
-def publish
-  @job = Job.find(params[:id])
-  @job.publish!
-  @job.save
-  redirect_to :back
+  def create
+    @job = Job.new(job_params)=
+    if @job.save
+      redirect_to admin_jobs_path, notice:"工作发布成功"
+    else
+      render :new
+    end
+  end
 
-end
+  def edit
+    @job = Job.find(params[:id])
+  end
 
-def hide
-  @job = Job.find(params[:id])
-  @job.hide!
-  @job.save
-  redirect_to :back
-end
+  def update
+    @job = Job.find(params[:id])
+    if @job.update(job_params)
+      redirect_to admin_jobs_path, notice:"修改成功"
+    else
+      render :edit
+    end
+  end
 
-def require_is_admin
+  def destroy
+    @job = Job.find(params[:id])
+    @job.destroy
+    redirect_to admin_jobs_path, alert:"删除成功"
+  end
+
+  def publish
+    @job = Job.find(params[:id])
+    @job.publish!
+    @job.save
+    redirect_to :back
+  end
+
+  def hide
+    @job = Job.find(params[:id])
+    @job.hide!
+    @job.save
+    redirect_to :back
+  end
+
+  def require_is_admin
     if !current_user.admin?
       flash[:alert] = 'You are not admin'
       redirect_to root_path
     end
-end
+  end
 
-private
+  private
 
-def job_params
-  params.require(:job).permit(:title,:description,:is_admin, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden, :require_skill, :company, :address, :many_kind,:experience, :education)
-end
-
-
+  def job_params
+    params.require(:job).permit(:title,:description,:is_admin, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden, :require_skill, :company, :address, :many_kind,:experience, :education)
+  end
 end

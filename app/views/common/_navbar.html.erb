@@ -1,11 +1,9 @@
 <nav class="navbar navbar-default" style="margin-bottom: 0; border-radius: 0px;">
 	<div class="container-fluid">
 		<div class="wrap">
-
 			<div class="navbar-header">
 				<a href="/" class="navbar-brand" class="logo" style="font-size: 2em;"><img src='<%= image_url "logo.png" %>'>灵犀招聘</a>
 			</div>
-
 			<div class="city">
 				<ul class="nav navbar-nav">
 					<li style="font-size: 0.8em; margin-top: 1.5em;">全国</li>
@@ -25,12 +23,10 @@
 					</li>
 				</ul>
 			</div>
-
 			<div class="navbar-collapse collapse" id="navbar-collapse-1">
 				<ul class="nav navbar-nav nav-pills" id="nav-1">
 					<li><%= link_to("常见问题",problem_path) %></li>
 				</ul>
-
 				<ul class="nav navbar-nav pull-right">
 					<% if !current_user %>
 					<li><%= link_to("注册", new_user_registration_path) %> </li>

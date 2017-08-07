@@ -1,13 +1,10 @@
 <div class="pull-right">
   <%= link_to("发布工作职位", new_admin_job_path, :class => "btn btn-info") %>
 </div>
-
 <br />
 <br />
 <br />
-
 <table class="table table-boldered">
-
   <thead>
     <tr class="info">
       <th>
@@ -29,16 +26,12 @@
         管理
       </th>
     </tr>
-
-
   </thead>
-
   <tbody>
   <% @jobs.each do |job| %>
   <tr>
     <td>
       <%= render_job_status(job) %>
-
       <%= link_to(job.title, admin_job_path(job)) %>
     </td>
     <td>
@@ -62,18 +55,13 @@
       <%= link_to hide_admin_job_path(job), :method => :post, :class => "btn btn-xs btn-warning" do %><i class="fa fa-eye-slash"></i><% end %>
       <% end %>
     </td>
-
   </tr>
   <% end %>
   </tbody>
 </table>
-
 <br />
 <br />
-
-
 <br />
-
 <br />
 <div class="text-center">
   <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>

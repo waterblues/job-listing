@@ -23,7 +23,6 @@
     </div>
   </div>
 </div>
-
 <div class="dropdown clearfix pull-right">
   <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
   排序
@@ -41,10 +40,6 @@
     </li>
   </ul>
 </div>
-
-
-
-
 <br />
 <br />
 <table class="table table_boldered table-hover table-responsive">
@@ -54,13 +49,10 @@
       <th>薪水上限</th>
       <th>薪水下限</th>
       <th>发布时间</th>
-
     </tr>
   </thead>
-
   <tbody>
     <% @jobs.each do |job| %>
-
     <tr>
       <td>
         <%= link_to(job.title, job_path(job)) %>
@@ -77,10 +69,7 @@
     </tr>
     <% end %>
    </tbody>
-
-
 </table>
-
 <br />
 <br />
 <br />
@@ -91,12 +80,7 @@
   <%= link_to("运营", yunying_index_path,class:"btn btn-success") %>
   <%= link_to("市场", shichang_index_path,class:"btn btn-warning") %>
   <%= link_to("管理", guanli_index_path,class:"btn btn-danger") %>
-
 </div>
-
-
-
-
 <br />
 <hr />
 <br />

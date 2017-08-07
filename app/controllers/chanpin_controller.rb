@@ -13,8 +13,6 @@ class ChanpinController < ApplicationController
       end
   end
 
-
-
   def new
     @job = Job.new
   end
@@ -22,62 +20,58 @@ class ChanpinController < ApplicationController
   def create
     @job = Job.new(job_params)
     if @job.save
-        redirect_to chanpin_index_path
+      redirect_to chanpin_index_path
     else
-        render :new
+      render :new
     end
-   end
+  end
 
-   def show
-     @job = Job.find(params[:id])
-     if @job.is_hidden
-       flash[:warning] = "This Job already archieved"
-       redirect_to root_path
-     end
-   end
-
-   def edit
-     @job = Job.find(params[:id])
-   end
-
-   def update
-     @job = Job.find(params[:id])
-     if @job.update(job_params)
-
-       redirect_to chanpin_index_path, notice: '编辑成功'
-     else
-       render :edit
-     end
+  def show
+    @job = Job.find(params[:id])
+    if @job.is_hidden
+      flash[:warning] = "This Job already archieved"
+      redirect_to root_path
     end
+  end
 
-   def destroy
-     @job = Job.find(params[:id])
-     @job.destroy
+  def edit
+    @job = Job.find(params[:id])
+  end
 
-       redirect_to chanpin_index_path, alert:'职位已删除'
-   end
+  def update
+    @job = Job.find(params[:id])
+    if @job.update(job_params)
+      redirect_to chanpin_index_path, notice: '编辑成功'
+    else
+      render :edit
+    end
+  end
 
-   def search
-     name = params[:q]
-     @jobs = Job.published.where("title LIKE '%#{name}%'")
-   end
+  def destroy
+    @job = Job.find(params[:id])
+    @job.destroy
+    redirect_to chanpin_index_path, alert:'职位已删除'
+  end
 
-   protected
+  def search
+    name = params[:q]
+    @jobs = Job.published.where("title LIKE '%#{name}%'")
+  end
 
-   def validate_search_key
-     @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
-     @search_criteria = search_criteria(@query_string)
-   end
+  protected
 
-   def search_criteria(query_string)
-     { :title_or_description_cont => query_string}
-   end
+  def validate_search_key
+    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
+    @search_criteria = search_criteria(@query_string)
+  end
 
-   private
+  def search_criteria(query_string)
+    { :title_or_description_cont => query_string}
+  end
 
-   def job_params
-     params.require(:job).permit(:title, :description,:wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden, :require_skill, :company, :address, :many_kind)
-   end
+  private
 
-
+  def job_params
+    params.require(:job).permit(:title, :description,:wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden, :require_skill, :company, :address, :many_kind)
+  end
 end

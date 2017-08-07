@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers:{sessions:'users/sessions'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
- get "/problem", to: "jobs#problem"
-
+  get "/problem", to: "jobs#problem"
 
   resources :jobs do
     collection do
@@ -20,8 +19,6 @@ Rails.application.routes.draw do
       get :yunying
       get :shichang
       get :guanli
-
-
     end
     resources :resumes
   end
@@ -31,10 +28,6 @@ Rails.application.routes.draw do
   resources :guangzhou
   resources :shenzhen
   resources :hangzhou
-
-
-
-
 
   namespace :admin do
     resources :jobs do
@@ -65,7 +58,6 @@ Rails.application.routes.draw do
           post :publish
           post :hide
         end
-
         resources :resumes
       end
     end
@@ -76,7 +68,6 @@ Rails.application.routes.draw do
           post :publish
           post :hide
         end
-
         resources :resumes
       end
     end
@@ -87,7 +78,6 @@ Rails.application.routes.draw do
           post :publish
           post :hide
         end
-
         resources :resumes
       end
     end
@@ -98,7 +88,6 @@ Rails.application.routes.draw do
           post :publish
           post :hide
         end
-
         resources :resumes
       end
     end
@@ -109,7 +98,6 @@ Rails.application.routes.draw do
           post :publish
           post :hide
         end
-
         resources :resumes
       end
     end
@@ -120,18 +108,10 @@ Rails.application.routes.draw do
           post :publish
           post :hide
         end
-
         resources :resumes
       end
     end
-
-
-
   end
-
-
-
-
 
   resources :jishu
   resources :chanpin
@@ -140,8 +120,5 @@ Rails.application.routes.draw do
   resources :guanli
   resources :shichang
 
-
-
   root "welcome#index"
-
 end

@@ -1,6 +1,5 @@
 class HangzhouController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
-
   before_filter :validate_search_key, :only => [:search]
   layout "hangzhou"
 
@@ -15,8 +14,6 @@ class HangzhouController < ApplicationController
       end
   end
 
-
-
   def new
     @job = Job.new
   end
@@ -28,55 +25,50 @@ class HangzhouController < ApplicationController
     else
         render :new
     end
-   end
+  end
 
-   def show
-     @job = Job.find(params[:id])
-   end
+  def show
+    @job = Job.find(params[:id])
+  end
 
-   def edit
-     @job = Job.find(params[:id])
-   end
+  def edit
+    @job = Job.find(params[:id])
+  end
 
-   def update
-     @job = Job.find(params[:id])
-     if @job.update(job_params)
-       redirect_to hangzhou_index_path, notice: '编辑成功'
-     else
-       render :edit
-     end
+  def update
+    @job = Job.find(params[:id])
+    if @job.update(job_params)
+      redirect_to hangzhou_index_path, notice: '编辑成功'
+    else
+      render :edit
     end
+  end
 
-   def destroy
-     @job = Job.find(params[:id])
-     @job.destroy
-       redirect_to hangzhou_index_path, alert:'职位已删除'
-   end
+  def destroy
+    @job = Job.find(params[:id])
+    @job.destroy
+    redirect_to hangzhou_index_path, alert:'职位已删除'
+  end
 
-   def search
-     name = params[:q]
-     @jobs = Job.published.where("title LIKE '%#{name}%'")
-   end
+  def search
+    name = params[:q]
+    @jobs = Job.published.where("title LIKE '%#{name}%'")
+  end
 
-   protected
+  protected
 
-   def validate_search_key
-     @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
-     @search_criteria = search_criteria(@query_string)
-   end
+  def validate_search_key
+    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
+    @search_criteria = search_criteria(@query_string)
+  end
 
-   def search_criteria(query_string)
-     { :title_or_description_cont => query_string}
-   end
+  def search_criteria(query_string)
+    { :title_or_description_cont => query_string}
+  end
 
-   private
+  private
 
-   def job_params
-     params.require(:job).permit(:title, :description,:wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden, :require_skill, :company, :address)
-   end
-
-
-
-
-
+  def job_params
+    params.require(:job).permit(:title, :description,:wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden, :require_skill, :company, :address)
+  end
 end
