@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
   before_filter :validate_search_key, :only => [:search]
+  before_action :find_job, only: [:show, :edit, :update, :destroy]
 
   def index
     @jobs = case params[:order]
@@ -27,7 +28,6 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id])
     if @job.is_hidden
       flash[:warning] = "This Job already archieved"
       redirect_to root_path
@@ -35,11 +35,9 @@ class JobsController < ApplicationController
   end
 
   def edit
-    @job = Job.find(params[:id])
   end
 
   def update
-    @job = Job.find(params[:id])
     if @job.update(job_params)
       redirect_to jobs_path, notice: '编辑成功'
     else
@@ -48,7 +46,6 @@ class JobsController < ApplicationController
   end
 
   def destroy
-    @job = Job.find(params[:id])
     @job.destroy
     redirect_to jobs_path, alert:'职位已删除'
   end
@@ -75,5 +72,9 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:title, :description,:wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden, :require_skill, :company, :address, :many_kind, :experience, :education)
+  end
+
+  def find_job
+    @job = Job.find(params[:id])
   end
 end
